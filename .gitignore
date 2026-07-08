@@ -1,0 +1,16 @@
+# Dados do utilizador — NUNCA versionar (documentos pessoais reais)
+data/
+
+# Ambiente virtual
+.venv/
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Cache de ferramentas
+.pytest_cache/
+.ruff_cache/
+
+# Metadados de build do editable install
+*.egg-info/
