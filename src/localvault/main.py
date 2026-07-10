@@ -2,6 +2,7 @@ from localvault.adapters.discovery import find_pdfs
 from localvault.adapters.extractor import extract_text_from_pdf
 from localvault.adapters.classifier import classify_document
 from localvault.domain.analyze import analyze
+from localvault.adapters.presentation import present
 
 
 def main():
@@ -11,8 +12,7 @@ def main():
 
     results = analyze(pdf_files, extract_text_from_pdf, classify_document)
 
-    for result in results:
-        print(result)
+    present(results)
 
 
 if __name__ == "__main__":

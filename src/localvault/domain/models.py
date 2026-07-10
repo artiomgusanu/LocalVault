@@ -6,7 +6,6 @@ class Classification(BaseModel):
     category: str
     title: str
     suggested_filename: str
-    reasoning_summary: str | None = None
 
 class ReviewReason(str, Enum):
     EXTRACTION_FAILED = "extraction_failed"
