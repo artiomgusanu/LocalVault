@@ -21,3 +21,27 @@ class Proposal(BaseModel):
 class NeedsReview(BaseModel):
     source_path: str
     reason : ReviewReason
+
+class Decision(str, Enum):
+    ACCEPT = "accept"
+    REJECT = "reject"
+    REVIEW = "review"
+    QUIT = "quit"
+
+class ResultStatus(str, Enum):
+    SIMULATED = "simulated"
+    MOVED = "moved"
+    FAILED = "failed"
+    SKIPPED = "skipped"
+    SENT_TO_REVIEW = "sent_to_review"
+    CANCELLED = "cancelled"
+
+class DecidedProposal(BaseModel):
+    proposal: Proposal
+    decision: Decision
+
+class OrganizeResult(BaseModel):
+    source_path: str
+    destination_path: str
+    status: ResultStatus
+    error: str | None = None
