@@ -42,6 +42,6 @@ class DecidedProposal(BaseModel):
 
 class OrganizeResult(BaseModel):
     source_path: str
-    destination_path: str
+    destination_path: str | None = None
     status: ResultStatus
     error: str | None = None

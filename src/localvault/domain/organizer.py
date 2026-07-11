@@ -1,8 +1,9 @@
-from localvault.domain.models import Decision, DecidedProposal, OrganizeResult, Proposal, ResultStatus
+from localvault.domain.models import Decision, DecidedProposal, NeedsReview, OrganizeResult, Proposal, ResultStatus
 
 
 def organize(results, confirm_fn, execute_fn) -> list[OrganizeResult]:
     proposals = [r for r in results if isinstance(r, Proposal)]
+    reviews = [r for r in results if isinstance(r, NeedsReview)]
 
     decided = []
     cancelled = []
@@ -42,6 +43,13 @@ def organize(results, confirm_fn, execute_fn) -> list[OrganizeResult]:
             source_path=proposal.source_path,
             destination_path=proposal.destination_path,
             status=ResultStatus.CANCELLED,
+        ))
+
+    for review in reviews:
+        final.append(OrganizeResult(
+            source_path=review.source_path,
+            destination_path=None,
+            status=ResultStatus.SENT_TO_REVIEW,
         ))
 
     return final
